@@ -1,5 +1,7 @@
 /.bundle
-/.env*
+.env
+.env.*
+!.env.example
 /log/*
 /tmp/*
 !/log/.keep
