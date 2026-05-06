@@ -1,0 +1,20 @@
+<section id="tools" class="bg-white px-4 pt-6 pb-40 sm:px-6 lg:px-8" style="scroll-margin-top: 82px;">
+  <div class="mx-auto max-w-6xl text-center">
+    <h3 class="text-[38px] font-bold leading-tight text-gray-900">Tools &amp; Technologies</h3>
+    <div class="mt-10 flex flex-wrap justify-center gap-7">
+      <% [
+        ["🐹", "Golang"],
+        ["💎", "Ruby"],
+        ["⚛️", "React"],
+        ["🔷", "Flutter"],
+        ["🎨", "Figma"],
+        ["🐳", "Docker"]
+      ].each do |icon, tool| %>
+        <div class="group flex h-[128px] w-[182px] cursor-pointer flex-col items-center justify-center rounded-[18px] border border-slate-200 bg-white shadow-[0_6px_18px_rgba(15,23,42,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(15,23,42,0.12)]">
+          <div class="text-[38px] leading-none transition-transform duration-300 group-hover:scale-105"><%= icon %></div>
+          <span class="mt-4 text-[17px] font-semibold text-gray-900"><%= tool %></span>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

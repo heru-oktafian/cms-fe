@@ -1,0 +1,50 @@
+<section id="skills" class="bg-gray-50 px-4 py-16 overflow-hidden sm:px-6 lg:px-8" style="scroll-margin-top: 82px;">
+  <div class="mx-auto max-w-5xl">
+    <div class="mb-16 text-center">
+      <h2 class="inline-block text-3xl font-bold text-orange-500 transition-transform hover:scale-105">
+        Keahlian <span class="text-blue-600">Teknis</span>
+      </h2>
+      <p class="mt-2 text-gray-600">Teknologi dan framework yang saya kuasai</p>
+    </div>
+
+    <% fallback_skills = {
+      "Backend & Database" => [
+        { "name" => "Golang", "level" => 95 },
+        { "name" => "Ruby on Rails", "level" => 90 },
+        { "name" => "PostgreSQL & MySQL", "level" => 88 }
+      ],
+      "Frontend & Mobile" => [
+        { "name" => "React & NextJS", "level" => 85 },
+        { "name" => "Flutter", "level" => 85 },
+        { "name" => "Tailwind CSS", "level" => 90 }
+      ]
+    } %>
+
+    <% groups = @skills_by_category.present? ? @skills_by_category : fallback_skills %>
+
+    <div class="grid grid-cols-1 gap-16 md:grid-cols-2">
+      <% groups.each_with_index do |(category, items), index| %>
+        <% accent_border = index.zero? ? 'border-blue-600' : 'border-orange-500' %>
+        <% hover_text = index.zero? ? 'group-hover:text-blue-600' : 'group-hover:text-orange-500' %>
+        <% bar_color = index.zero? ? 'bg-blue-600 group-hover:bg-orange-500' : 'bg-blue-500 group-hover:bg-blue-700' %>
+
+        <div class="space-y-6">
+          <h3 class="mb-6 border-l-4 <%= accent_border %> pl-3 text-xl font-bold text-gray-800"><%= category %></h3>
+
+          <% items.each do |skill| %>
+            <% level = skill["level"].to_i %>
+            <div class="group cursor-default">
+              <div class="mb-1 flex justify-between">
+                <span class="text-sm font-semibold text-gray-700 transition-colors <%= hover_text %>"><%= skill["name"] %></span>
+                <span class="text-sm font-semibold text-gray-700"><%= level %>%</span>
+              </div>
+              <div class="h-2.5 w-full overflow-hidden rounded-full bg-gray-200">
+                <div class="h-2.5 rounded-full transition-all duration-500 ease-out <%= bar_color %>" style="width: <%= level %>%"></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

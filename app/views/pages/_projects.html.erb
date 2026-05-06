@@ -1,0 +1,31 @@
+<section id="projects" class="bg-white pt-40">
+  <div class="rounded-t-[48px] bg-orange-400 px-4 pb-20 sm:px-6 lg:px-8" style="padding-top: 7rem;">
+    <div class="mx-auto max-w-6xl">
+    <div class="text-center">
+      <h2 class="inline-block text-3xl font-bold text-white transition-transform hover:scale-105">
+        Projects <span class="text-blue-700">&amp; Portfolio</span>
+      </h2>
+      <p class="mt-2 text-white/85">Beberapa karya dan produk yang pernah saya bangun</p>
+    </div>
+      <div class="mt-12 space-y-10">
+      <% 2.times do |index| %>
+        <div class="group flex flex-col overflow-hidden rounded-2xl bg-white shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl md:<%= index.odd? ? 'flex-row-reverse' : 'flex-row' %>">
+          <div class="md:w-5/12 bg-gray-100 p-8 overflow-hidden flex items-center justify-center">
+            <div class="flex min-h-[220px] w-full items-center justify-center rounded-lg bg-slate-100 text-sm text-slate-400 transition-transform duration-700 ease-in-out group-hover:scale-110">
+              Project image <%= index + 1 %>
+            </div>
+          </div>
+          <div class="md:w-7/12 p-8 flex flex-col justify-center">
+            <h3 class="text-2xl font-bold text-blue-600 transition-colors duration-300 group-hover:text-orange-500">Project title placeholder</h3>
+            <p class="mt-4 text-sm leading-7 text-slate-600">Summary dan stack badges project akan ditarik dari public projects endpoint pada fase berikutnya.</p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-600 transition-colors cursor-pointer hover:bg-blue-600 hover:text-white">Stack</span>
+              <span class="rounded-full bg-blue-100 px-3 py-1 text-xs font-bold text-blue-600 transition-colors cursor-pointer hover:bg-blue-600 hover:text-white">Stack</span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</section>

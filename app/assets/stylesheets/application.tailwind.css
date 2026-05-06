@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@source "../../../app/views/**/*.erb";
+@source "../../../app/helpers/**/*.rb";
+@source "../../../app/javascript/**/*.js";
+@source "../../../app/controllers/**/*.rb";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .mobile-only-nav-trigger {
+    display: flex;
+  }
+
+  .desktop-only-nav {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .mobile-only-nav-trigger {
+      display: none;
+    }
+
+    .desktop-only-nav {
+      display: flex;
+    }
+
+    .about-service-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .about-service-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}

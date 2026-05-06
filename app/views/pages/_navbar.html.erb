@@ -1,0 +1,54 @@
+<%
+  profile_name = @profile["full_name"].presence || "Heru Oktafian"
+  name_parts = profile_name.split
+  display_name = if name_parts.size > 1
+    "#{ERB::Util.html_escape(name_parts[0])} <span class=\"text-orange-500\">#{ERB::Util.html_escape(name_parts[1..].join(' '))}</span>"
+  else
+    ERB::Util.html_escape(profile_name)
+  end
+%>
+
+<nav class="fixed top-0 z-50 w-full bg-white/90 shadow-sm backdrop-blur-md transition-all duration-300">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-20 items-center justify-between">
+      <a href="#home" class="group flex items-center gap-3">
+        <img src="https://files.heruoktafian.com/assets/images/navbar/logo.svg" alt="Logo" class="h-10 w-auto transition-transform duration-300 group-hover:scale-110">
+        <span class="font-bold text-2xl text-blue-600 transition-colors duration-300 group-hover:text-blue-700"><%= display_name.html_safe %></span>
+      </a>
+      <div class="desktop-only-nav space-x-8 text-sm font-medium text-blue-800">
+        <a href="#home" class="hover:text-orange-500 hover:-translate-y-1 transition-all duration-300">Beranda</a>
+        <a href="#about" class="hover:text-orange-500 hover:-translate-y-1 transition-all duration-300">Tentang</a>
+        <a href="#skills" class="hover:text-orange-500 hover:-translate-y-1 transition-all duration-300">Keahlian</a>
+        <a href="#projects" class="hover:text-orange-500 hover:-translate-y-1 transition-all duration-300">Portfolio</a>
+        <a href="#experiences" class="hover:text-orange-500 hover:-translate-y-1 transition-all duration-300">Experiences</a>
+        <a href="#contact" class="hover:text-orange-500 hover:-translate-y-1 transition-all duration-300">Kontak</a>
+      </div>
+      <button type="button" data-mobile-nav-open class="mobile-only-nav-trigger h-11 w-11 items-center justify-center rounded-full border border-blue-100 text-blue-700 transition hover:border-orange-300 hover:text-orange-500" aria-label="Open navigation menu">
+        <span class="text-2xl leading-none">☰</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div data-mobile-nav-overlay class="fixed inset-0 z-[60] hidden md:hidden">
+  <div class="absolute inset-0 bg-slate-950/70"></div>
+  <aside class="relative ml-auto flex h-full w-full max-w-sm flex-col bg-white px-6 py-6 shadow-2xl">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="https://files.heruoktafian.com/assets/images/navbar/logo.svg" alt="Logo" class="h-9 w-auto">
+        <span class="text-xl font-bold text-blue-600"><%= display_name.html_safe %></span>
+      </div>
+      <button type="button" data-mobile-nav-close class="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 text-slate-700 transition hover:border-orange-300 hover:text-orange-500" aria-label="Close navigation menu">
+        <span class="text-2xl leading-none">×</span>
+      </button>
+    </div>
+    <nav class="mt-10 flex flex-col gap-5 text-base font-medium text-blue-800">
+      <a href="#home" class="rounded-2xl px-3 py-3 transition hover:bg-orange-50 hover:text-orange-500">Beranda</a>
+      <a href="#about" class="rounded-2xl px-3 py-3 transition hover:bg-orange-50 hover:text-orange-500">Tentang</a>
+      <a href="#skills" class="rounded-2xl px-3 py-3 transition hover:bg-orange-50 hover:text-orange-500">Keahlian</a>
+      <a href="#projects" class="rounded-2xl px-3 py-3 transition hover:bg-orange-50 hover:text-orange-500">Portfolio</a>
+      <a href="#experiences" class="rounded-2xl px-3 py-3 transition hover:bg-orange-50 hover:text-orange-500">Experiences</a>
+      <a href="#contact" class="rounded-2xl px-3 py-3 transition hover:bg-orange-50 hover:text-orange-500">Kontak</a>
+    </nav>
+  </aside>
+</div>

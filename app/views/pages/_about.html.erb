@@ -1,0 +1,36 @@
+<section id="about" class="bg-white px-4 py-20 sm:px-6 lg:px-8" style="scroll-margin-top: 72px;">
+  <div class="mx-auto max-w-7xl text-center">
+    <h2 class="inline-block text-3xl font-bold text-blue-600 transition-transform duration-300 hover:scale-105 sm:text-4xl">
+      Tentang <span class="text-orange-500">Saya</span>
+    </h2>
+    <div class="mx-auto mt-6 max-w-3xl text-lg leading-9 text-gray-600">
+      <%= sanitize((@profile["about_description"].presence || "Saya adalah Full Stack Developer dengan pengalaman luas dalam berbagai teknologi modern. Sebagai Freelance Professional, saya telah membantu banyak klien mewujudkan visi digital mereka."), tags: %w[strong em br], attributes: []) %>
+    </div>
+
+    <div class="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 about-service-grid">
+      <div class="group cursor-pointer rounded-xl bg-blue-600 p-8 text-white shadow-lg transition-all duration-300 hover:-translate-y-3 hover:bg-blue-700 hover:shadow-2xl">
+        <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl transition-transform duration-300 group-hover:rotate-12">⚙️</div>
+        <h3 class="mb-3 text-xl font-bold">Backend Development</h3>
+        <p class="text-sm text-blue-100">Golang &amp; Ruby on Rails untuk sistem yang robust dan scalable.</p>
+      </div>
+
+      <div class="group cursor-pointer rounded-xl bg-orange-500 p-8 text-white shadow-lg transition-all duration-300 hover:-translate-y-3 hover:bg-orange-600 hover:shadow-2xl">
+        <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl transition-transform duration-300 group-hover:rotate-12">🖥️</div>
+        <h3 class="mb-3 text-xl font-bold">Frontend Development</h3>
+        <p class="text-sm text-orange-100">React &amp; VueJS dengan Tailwind CSS untuk UI yang modern.</p>
+      </div>
+
+      <div class="group cursor-pointer rounded-xl bg-blue-500 p-8 text-white shadow-lg transition-all duration-300 hover:-translate-y-3 hover:bg-blue-600 hover:shadow-2xl">
+        <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl transition-transform duration-300 group-hover:rotate-12">📱</div>
+        <h3 class="mb-3 text-xl font-bold">Mobile Development</h3>
+        <p class="text-sm text-blue-100">Flutter untuk aplikasi mobile cross-platform yang performant.</p>
+      </div>
+
+      <div class="group cursor-pointer rounded-xl bg-blue-700 p-8 text-white shadow-lg transition-all duration-300 hover:-translate-y-3 hover:bg-blue-800 hover:shadow-2xl">
+        <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl transition-transform duration-300 group-hover:rotate-12">🎨</div>
+        <h3 class="mb-3 text-xl font-bold">UI/UX Design</h3>
+        <p class="text-sm text-blue-100">Desain interface yang user-friendly dan pengalaman yang optimal.</p>
+      </div>
+    </div>
+  </div>
+</section>
