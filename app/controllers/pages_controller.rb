@@ -5,6 +5,7 @@ class PagesController < ApplicationController
     @skills = client.skills || []
     @tools = client.tools || []
     @projects = client.projects || []
+    @experiences = client.experiences || []
     @skills_by_category = @skills.group_by { |skill| skill["category"].presence || "Others" }
   end
 end

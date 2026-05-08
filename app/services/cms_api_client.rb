@@ -22,6 +22,10 @@ class CmsApiClient
     get_json("/api/v1/public/projects") || []
   end
 
+  def experiences
+    get_json("/api/v1/public/experiences") || []
+  end
+
   private
 
   attr_reader :base_url
