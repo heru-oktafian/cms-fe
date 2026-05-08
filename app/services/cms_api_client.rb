@@ -14,6 +14,14 @@ class CmsApiClient
     get_json("/api/v1/public/skills") || []
   end
 
+  def tools
+    get_json("/api/v1/public/tools") || []
+  end
+
+  def projects
+    get_json("/api/v1/public/projects") || []
+  end
+
   private
 
   attr_reader :base_url

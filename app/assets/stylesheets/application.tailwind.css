@@ -20,6 +20,28 @@
     display: none;
   }
 
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card-hover {
+    transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
+  }
+
+  .card-hover:hover .tool-emoji {
+    transform: scale(1.08);
+  }
+
+  .tool-emoji {
+    transition: transform 220ms ease;
+  }
+
   @media (min-width: 768px) {
     .mobile-only-nav-trigger {
       display: none;
@@ -32,11 +54,31 @@
     .about-service-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .tools-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
   }
 
   @media (min-width: 1024px) {
     .about-service-grid {
       grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .tools-grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .project-row {
+      display: flex;
+    }
+
+    .project-row-normal {
+      flex-direction: row !important;
+    }
+
+    .project-row-reverse {
+      flex-direction: row-reverse !important;
     }
   }
 }
