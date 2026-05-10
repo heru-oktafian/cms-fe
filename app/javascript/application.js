@@ -2,3 +2,4 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "./mobile_nav"
+import "./section_refresh"

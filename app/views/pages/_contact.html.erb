@@ -2,17 +2,103 @@
   <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2">
     <div>
       <p class="text-sm font-semibold uppercase tracking-[0.3em] text-sky-100/80">Contact</p>
-      <h2 class="mt-4 text-3xl font-bold sm:text-4xl">Public contact section placeholder.</h2>
-      <p class="mt-6 text-base leading-8 text-sky-100">Informasi kontak dari Profile dan Social Links akan ditampilkan di sini. Form ini nanti akan submit ke ContactMessage public endpoint.</p>
-    </div>
-    <div class="rounded-[32px] border border-white/15 bg-white/10 p-6 backdrop-blur-sm">
-      <div class="grid gap-4">
-        <input type="text" placeholder="Name" class="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-sky-100/70">
-        <input type="email" placeholder="Email" class="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-sky-100/70">
-        <input type="text" placeholder="Subject" class="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-sky-100/70">
-        <textarea rows="5" placeholder="Message" class="rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-sky-100/70"></textarea>
-        <button type="button" class="rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-sky-700 transition hover:bg-orange-400 hover:text-white">Send Message</button>
+      <h2 class="mt-4 text-3xl font-bold sm:text-4xl">Hubungi Saya</h2>
+      <p class="mt-6 text-base leading-8 text-sky-100">Punya project menarik? Mari diskusikan bagaimana saya bisa membantu mewujudkan visi digital Anda!</p>
+
+      <div class="mt-8">
+        <div class="mb-6 flex items-start gap-4">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-xl">✉️</div>
+          <div>
+            <p class="text-sm font-semibold text-white">Email</p>
+            <p class="text-sky-100"><%= @profile["email"].presence || "-" %></p>
+          </div>
+        </div>
+
+        <div class="mb-6 flex items-start gap-4">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-xl">📞</div>
+          <div>
+            <p class="text-sm font-semibold text-white">WhatsApp</p>
+            <p class="text-sky-100"><%= @profile["phone"].presence || "-" %></p>
+          </div>
+        </div>
+
+        <div class="mb-6 flex items-start gap-4">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-xl">🌐</div>
+          <div>
+            <p class="text-sm font-semibold text-white">Website</p>
+            <p class="text-sky-100"><%= @social_links.find { |item| item["platform"].to_s.downcase.include?("website") || item["label"].to_s.downcase.include?("website") || item["url"].to_s.include?("heruoktafian.com") }&.dig("url") || "-" %></p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-xl">📍</div>
+          <div>
+            <p class="text-sm font-semibold text-white">Lokasi</p>
+            <p class="text-sky-100"><%= @profile["location"].presence || "-" %></p>
+          </div>
+        </div>
       </div>
+
+      <div class="mt-10">
+        <p class="text-lg font-semibold text-white">Follow Saya:</p>
+        <div class="mt-4 flex flex-wrap gap-4">
+          <% @social_links.each do |link| %>
+            <a href="<%= link["url"] %>" target="_blank" rel="noopener noreferrer" class="flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-sm font-bold text-white transition hover:-translate-y-1 hover:bg-white hover:text-sky-700" aria-label="<%= link["platform"].presence || link["label"].presence || 'social link' %>">
+              <% if link["icon_path"].present? %>
+                <img src="<%= link["icon_path"] %>" alt="<%= link["platform"].presence || link["label"].presence || 'social icon' %>" class="object-contain" style="width: 40px; height: 40px;">
+              <% else %>
+                <span><%= link["label"].to_s.first(2).upcase.presence || "•" %></span>
+              <% end %>
+            </a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="rounded-[32px] border border-white/15 bg-white/10 p-6 backdrop-blur-sm">
+      <% if flash[:notice].present? %>
+        <div class="mb-4 rounded-2xl bg-emerald-100 px-4 py-3 text-sm font-medium text-emerald-700"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:alert].present? %>
+        <div class="mb-4 rounded-2xl bg-rose-100 px-4 py-3 text-sm font-medium text-rose-700"><%= flash[:alert] %></div>
+      <% end %>
+
+      <%= form_with url: contact_message_path, method: :post, scope: :contact_message, local: true, class: "grid gap-4" do |form| %>
+        <div>
+          <label class="mb-2 block text-sm font-medium text-white">Nama</label>
+          <%= form.text_field :name, value: @contact_form["name"], placeholder: "Nama Anda", class: "w-full rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-sky-100/70" %>
+        </div>
+
+        <div>
+          <label class="mb-2 block text-sm font-medium text-white">Email</label>
+          <%= form.email_field :email, value: @contact_form["email"], placeholder: "email@anda.com", class: "w-full rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-sky-100/70" %>
+        </div>
+
+        <div>
+          <label class="mb-2 block text-sm font-medium text-white">No. WhatsApp</label>
+          <%= form.text_field :phone, value: @contact_form["phone"], placeholder: "+62 812-xxxx-xxxx", class: "w-full rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-sky-100/70" %>
+        </div>
+
+        <div>
+          <label class="mb-2 block text-sm font-medium text-white">Pilih jenis project</label>
+          <%= form.select :subject, {}, {}, class: "w-full rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-slate-200" do %>
+            <option value="" style="color: #64748b;">Pilih jenis project</option>
+            <option value="Website Development" <%= 'selected' if @contact_form["subject"] == "Website Development" %> style="color: #475569;">Website Development</option>
+            <option value="Mobile App Development" <%= 'selected' if @contact_form["subject"] == "Mobile App Development" %> style="color: #475569;">Mobile App Development</option>
+            <option value="UI/UX Design" <%= 'selected' if @contact_form["subject"] == "UI/UX Design" %> style="color: #475569;">UI/UX Design</option>
+            <option value="Backend Development" <%= 'selected' if @contact_form["subject"] == "Backend Development" %> style="color: #475569;">Backend Development</option>
+            <option value="Konsultasi & Kolaborasi" <%= 'selected' if @contact_form["subject"] == "Konsultasi & Kolaborasi" %> style="color: #475569;">Konsultasi & Kolaborasi</option>
+            <option value="Lainnya" <%= 'selected' if @contact_form["subject"] == "Lainnya" %> style="color: #475569;">Lainnya</option>
+          <% end %>
+        </div>
+
+        <div>
+          <label class="mb-2 block text-sm font-medium text-white">Pesan</label>
+          <%= form.text_area :message, value: @contact_form["message"], rows: 5, placeholder: "Tulis pesan Anda di sini", class: "w-full rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-sky-100/70" %>
+        </div>
+
+        <%= form.button "Kirim Pesan", type: :submit, class: "mt-2 rounded-2xl bg-white px-5 py-3 text-sm font-semibold text-sky-700 transition hover:bg-orange-400 hover:text-white" %>
+      <% end %>
     </div>
   </div>
 </section>

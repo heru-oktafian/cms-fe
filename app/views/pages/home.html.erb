@@ -1,12 +1,12 @@
-<div class="min-h-screen bg-white text-slate-900">
+<div class="min-h-screen bg-white text-slate-900" data-section-refresh-root>
   <%= render "navbar" %>
   <%= render "hero" %>
   <%= render "about" %>
-  <%= render "skills" %>
-  <%= render "tools" %>
+  <div data-refresh-section="skills"><%= render "skills" %></div>
+  <div data-refresh-section="tools"><%= render "tools" %></div>
   <div class="h-10 bg-white"></div>
-  <%= render "projects" %>
-  <%= render "experiences" %>
-  <%= render "contact" %>
-  <%= render "footer" %>
+  <div data-refresh-section="projects"><%= render "projects" %></div>
+  <div data-refresh-section="experiences"><%= render "experiences" %></div>
+  <div data-refresh-section="contact"><%= render "contact" %></div>
+  <div data-refresh-section="footer"><%= render "footer" %></div>
 </div>
