@@ -37,7 +37,7 @@ class PagesController < ApplicationController
     hydrate_homepage_data(client)
     @contact_form = default_contact_form
 
-    html = render_to_string(partial: "pages/#{partial_name}", formats: [:html], layout: false)
+    html = render_to_string(partial: "pages/#{partial_name}", formats: [ :html ], layout: false)
     render json: { section: section, html: html }
   end
 
