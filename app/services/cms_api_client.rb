@@ -10,6 +10,30 @@ class CmsApiClient
     get_json("/api/v1/public/portfolio") || {}
   end
 
+  def skills
+    get_json("/api/v1/public/skills") || []
+  end
+
+  def projects
+    get_json("/api/v1/public/projects") || []
+  end
+
+  def experiences
+    get_json("/api/v1/public/experiences") || []
+  end
+
+  def social_links
+    get_json("/api/v1/public/social-links") || []
+  end
+
+  def tools
+    get_json("/api/v1/public/tools") || []
+  end
+
+  def profile
+    get_json("/api/v1/public/profile") || {}
+  end
+
   def create_contact_message(payload)
     post_json("/api/v1/public/contact-messages", payload)
   end

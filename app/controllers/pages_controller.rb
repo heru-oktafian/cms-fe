@@ -33,7 +33,23 @@ class PagesController < ApplicationController
     partial_name = SECTION_PARTIALS[section]
     return head :not_found unless partial_name
 
-    @contact_form = default_contact_form
+    client = CmsApiClient.new
+
+    case section
+    when "skills"
+      @skills = client.skills
+      @skills_by_category = @skills.group_by { |skill| skill["category"].presence || "Others" }
+    when "tools"
+      @tools = client.tools
+    when "projects"
+      @projects = client.projects
+    when "experiences"
+      @experiences = client.experiences
+    when "contact"
+      @profile = client.profile
+      @social_links = client.social_links
+      @contact_form = default_contact_form
+    end
 
     html = render_to_string(partial: "pages/#{partial_name}", formats: [ :html ], layout: false)
     render json: { section: section, html: html }
