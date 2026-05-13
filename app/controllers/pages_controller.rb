@@ -33,8 +33,6 @@ class PagesController < ApplicationController
     partial_name = SECTION_PARTIALS[section]
     return head :not_found unless partial_name
 
-    client = CmsApiClient.new
-    hydrate_homepage_data(client)
     @contact_form = default_contact_form
 
     html = render_to_string(partial: "pages/#{partial_name}", formats: [ :html ], layout: false)
