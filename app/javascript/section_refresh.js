@@ -47,8 +47,7 @@ function bindSectionRefresh() {
     if (link.dataset.sectionRefreshBound === 'true') return
     link.dataset.sectionRefreshBound = 'true'
 
-    link.addEventListener('click', (e) => {
-      e.preventDefault()
+    link.addEventListener('click', () => {
       const section = link.dataset.refreshTarget
       if (section) refreshSection(section)
     })
